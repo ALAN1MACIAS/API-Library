@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['host_postgres'] %>
+  port: <%= ENV['port_postgres'] %>
+  username: <%= ENV['username_postgres'] %>
+  password: <%= ENV['password_postgres'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: apicourse_development
+
+test:
+  <<: *default
+  database: apicourse_test
+
+production:
+  <<: *default
+  database: apicourse_production
+  username: apicourse
+  password: <%= ENV['REGISTROS_DATABASE_PASSWORD'] %>
