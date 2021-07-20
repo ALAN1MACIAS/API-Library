@@ -70,7 +70,7 @@ describe 'Book API', type: :request do
     it 'create a new book' do
       book = { tile: 'The martian' }
       author = { first_name: 'Andy', last_name: 'Weir', age: '48' }
-      expect { post '/api/v1/book', params: { book: book, author: author } }.to change { Book.count }.from(0).to(1)
+      expect { post '/api/v1/book', params: { book: book, author: author }, headers: { 'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSJ9.M1vu6qDej7HzuSxcfbE6KAMekNUXB3EWtxwS0pg4UGg' } }.to change { Book.count }.from(0).to(1)
 
       expect(response).to have_http_status(:created)
       expect(Author.count).to eq(1)
